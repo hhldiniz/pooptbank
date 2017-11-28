@@ -3,8 +3,16 @@ from appJar import gui
 
 class View:
     def __init__(self, title, size):
-        self.__app = gui(title, size)
+        try:
+            self.__app = gui(title, size)
+        except AttributeError:
+            self.__app = gui(title, size)
+        except Exception:
+            self.__app.showSubWindow(title)
         self.__btn_callback = None
+
+    def launch(self, title):
+        self.__app.startSubWindow(title)
 
     def set_btn_callback(self, callback):
         self.__btn_callback = callback
