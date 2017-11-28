@@ -1,9 +1,9 @@
 from appJar import gui
 
 
-class Main:
-    def __init__(self, title="Poopt Bank", size="800x600"):
-        self.__app = gui(title, size)
+class View:
+    def __init__(self, title, size):
+        self.app = gui(title, size)
 
     def add_label(self, label_name, label_text):
         self.__app.addLabel(label_name, label_text)
@@ -25,6 +25,3 @@ class Main:
 
     def initialize_gui(self):
         self.__app.go()
-
-    def __btn_callback(self, btn):
-        print('clicked')
