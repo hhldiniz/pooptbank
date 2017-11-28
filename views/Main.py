@@ -10,8 +10,12 @@ class Main(View):
 
     def __btn_callback(self, btn):
         if btn == "Entrar":
-            db_controller = DBController("localhost", "poopt", "postgres", "cgch36AA")
-            data = db_controller.select_data("user", "username,password")
+            db_controller = DBController("localhost", "pooptbank", "postgres", "cgch36AA!@")
+            username = self.get_app_gui().getEntry("Username")
+            password = self.get_app_gui().getEntry("Password")
+            data = db_controller.select_data("user", "username,password",
+                                             f"WHERE username='{username}' AND password='{password}'")
+            print(data)
         elif btn == "Sair":
             View.get_app_gui(self).stop()
         elif btn == "Cadastrar":
