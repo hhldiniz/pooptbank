@@ -10,13 +10,13 @@ class DBController:
             print("Conexão com o banco falhou")
 
     def insert_data(self, table="", fields="", data=""):
-        self.__cursor.execute(f"INSERT INTO {table} ({fields}) VALUES ({data})")
-        return self.__cursor.fetchall()
+        result = self.__cursor.execute(f"INSERT INTO {table} ({fields}) VALUES ({data})")
+        return result
 
     def select_data(self, table="", fields="", conditions="WHERE 1"):
         self.__cursor.execute(f"SELECT {fields} FROM {table} {conditions}")
         return self.__cursor.fetchall()
 
     def update_data(self, table="", field="", value="", conditions="WHERE 1"):
-        self.__cursor.execute(f"UPDATE {table} SET {field}='{value}' {conditions}")
-        return self.__cursor.fetchall()
+        result = self.__cursor.execute(f"UPDATE {table} SET {field}='{value}' {conditions}")
+        return result
