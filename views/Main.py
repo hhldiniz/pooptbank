@@ -15,5 +15,5 @@ class Main(View):
         elif btn == "Sair":
             View.get_app_gui(self).stop()
         elif btn == "Cadastrar":
-            signup_view = Signup()
+            signup_view = Signup(View.get_app_gui(self))
 

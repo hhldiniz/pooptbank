@@ -2,17 +2,11 @@ from appJar import gui
 
 
 class View:
-    def __init__(self, title, size):
-        try:
-            self.__app = gui(title, size)
-        except AttributeError:
-            self.__app = gui(title, size)
-        except Exception:
-            self.__app.showSubWindow(title)
-        self.__btn_callback = None
+    __app = None
 
-    def launch(self, title):
-        self.__app.startSubWindow(title)
+    def __init__(self, title, size):
+        self.__app = gui(title, size)
+        self.__btn_callback = None
 
     def set_btn_callback(self, callback):
         self.__btn_callback = callback
