@@ -1,4 +1,5 @@
 from DBController import DBController
+from views.Signup import Signup
 from views.View import View
 
 
@@ -14,4 +15,5 @@ class Main(View):
         elif btn == "Sair":
             View.get_app_gui(self).stop()
         elif btn == "Cadastrar":
-            pass
+            signup_view = Signup(View.get_app_gui(self))
+

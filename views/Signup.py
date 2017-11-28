@@ -1,6 +1,11 @@
-from views.View import View
+from views.Modal import ModalWindow
 
 
-class Signup(View):
-    def __init__(self, title="Poopt Bank - Singup", size='800x600'):
-        View.__init__(self, title, size)
+class Signup(ModalWindow):
+    def __init__(self, app, title="Poopt Signup"):
+        ModalWindow.__init__(self, app, title)
+        app.addValidationEntry("New Username")
+        app.addSecretLabelEntry("New Password")
+
+    def destroy_window(self):
+        self.__app.destroySubWindow(self.__title)

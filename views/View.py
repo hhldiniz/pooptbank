@@ -2,6 +2,8 @@ from appJar import gui
 
 
 class View:
+    __app = None
+
     def __init__(self, title, size):
         self.__app = gui(title, size)
         self.__btn_callback = None
