@@ -1,4 +1,5 @@
 from DBController import DBController
+from views.Config import Configuration
 from views.Signup import Signup
 from views.View import View
 
@@ -20,4 +21,5 @@ class Main(View):
             View.get_app_gui(self).stop()
         elif btn == "Cadastrar":
             signup_view = Signup(View.get_app_gui(self))
-
+        elif btn == "Configurar":
+            config_view = Configuration(View.get_app_gui(self), btn)

@@ -1,4 +1,4 @@
-class ModalWindow:
+class SubWindow:
     def __init__(self, app, title):
         self.__modal = self
         self.__app = app
@@ -18,3 +18,9 @@ class ModalWindow:
 
     def add_label_validation_field(self, title):
         self.__app.addLabelValidationEntry(title)
+
+    def add_label(self, label):
+        self.__app.addLabel(label, label)
+
+    def set_size(self, size):
+        self.__app.setGeometry(size)
