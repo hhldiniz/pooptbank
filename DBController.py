@@ -10,7 +10,9 @@ class DBController:
             print("Conexão com o banco falhou")
 
     def insert_data(self, table="", fields="", data=""):
-        result = self.__cursor.execute(f"INSERT INTO {table} ({fields}) VALUES ({data})")
+        query = f"""INSERT INTO \"{table}\" ({fields}) VALUES ({data})"""
+        print(query)
+        result = self.__cursor.execute(query)
         return result
 
     def select_data(self, table="", fields="", conditions="WHERE 1"):
