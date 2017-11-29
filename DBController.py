@@ -10,9 +10,15 @@ class DBController:
             print("Conexão com o banco falhou")
 
     def insert_data(self, table="", fields="", data=""):
-        query = f"""INSERT INTO \"{table}\" ({fields}) VALUES ({data})"""
+        prepare_value_string = "("
+        data_as_array = data.split(",")
+        for obj in data_as_array:
+            prepare_value_string+="%s,"
+        prepare_value_string = prepare_value_string[:-1]
+        prepare_value_string += ")"
+        query = f"INSERT INTO \"{table}\" ({fields}) VALUES ({prepare_value_string})"
         print(query)
-        result = self.__cursor.execute(query)
+        result = self.__cursor.execute(query, data)
         return result
 
     def select_data(self, table="", fields="", conditions="WHERE 1"):
