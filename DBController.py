@@ -26,4 +26,5 @@ class DBController:
             data = dict()
         if conditions is None:
             conditions = {}
-
+        collection = self.__db[collection]
+        return collection.find_one_and_update(conditions, data)
