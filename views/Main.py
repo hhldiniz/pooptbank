@@ -15,12 +15,12 @@ class Main(View):
             db_controller = DBController("localhost", "pooptbank")
             username = self.get_app_gui().getEntry("Username")
             password = self.get_app_gui().getEntry("Password")
-            data = db_controller.select_data('users', {'username':username, 'password': password})
-            print(data)
-            home_view = HomeView(View.get_app_gui(self), "Home")
+            data = db_controller.select_data_single('users', {'username': username, 'password': password})
+            if data is not None and data['username'] == username and data['password'] == password:
+                HomeView(View.get_app_gui(self), "Home")
         elif btn == "Sair":
             View.get_app_gui(self).stop()
         elif btn == "Cadastrar":
-            signup_view = Signup(View.get_app_gui(self))
+            Signup(View.get_app_gui(self))
         elif btn == "Configurar":
-            config_view = Configuration(View.get_app_gui(self), btn)
+            Configuration(View.get_app_gui(self), btn)

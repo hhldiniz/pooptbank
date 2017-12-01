@@ -13,13 +13,21 @@ class DBController:
         if data is None:
             data = {}
         collection = self.__db[collection]
-        return collection.insert_one(data).inserted_id
+        print(collection)
+        result = collection.insert_one(data)
+        return result.inserted_id
 
     def select_data(self, collection="", conditions=None):
         if conditions is None:
             conditions = {}
         collection = self.__db[collection]
         return collection.find(conditions)
+
+    def select_data_single(self, collection="", condition=None):
+        if condition is None:
+            condition = {}
+        collection = self.__db[collection]
+        return collection.find_one(condition)
 
     def update_data(self, collection="", conditions=None, data=None):
         if data is None:
