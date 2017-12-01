@@ -14,8 +14,7 @@ class Main(View):
             db_controller = DBController("localhost", "pooptbank", "postgres", "cgch36AA!@")
             username = self.get_app_gui().getEntry("Username")
             password = self.get_app_gui().getEntry("Password")
-            data = db_controller.select_data("user", "username,password",
-                                             f"WHERE username='{username}' AND password='{password}'")
+            data = db_controller.select_data()
             print(data)
         elif btn == "Sair":
             View.get_app_gui(self).stop()

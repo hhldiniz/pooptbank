@@ -1,30 +1,29 @@
-import psycopg2
+from pymongo import MongoClient
 
 
 class DBController:
-    def __init__(self, host, db_name, db_user, db_pass):
+    def __init__(self, host="localhost", port="27017", db_name="pooptbank", db_user="root", db_pass=""):
         try:
-            self.__con = psycopg2.connect(f"dbname='{db_name}' user='{db_user}' host='{host}' password='{db_pass}'")
-            self.__cursor = self.__con.cursor()
+            self.__client = MongoClient(host, port)
+            self.__db = self.__client[db_name]
         except:
             print("Conexão com o banco falhou")
 
-    def insert_data(self, table="", fields="", data=""):
-        prepare_value_string = "("
-        data_as_array = data.split(",")
-        for obj in data_as_array:
-            prepare_value_string+="%s,"
-        prepare_value_string = prepare_value_string[:-1]
-        prepare_value_string += ")"
-        query = f"INSERT INTO \"{table}\" ({fields}) VALUES ({prepare_value_string})"
-        print(query)
-        result = self.__cursor.execute(query, data)
-        return result
+    def insert_data(self, collection="", data=None):
+        if data is None:
+            data = {}
+        collection = self.__db[collection]
+        return collection.insert_one(data).inserted_id
 
-    def select_data(self, table="", fields="", conditions="WHERE 1"):
-        self.__cursor.execute(f"SELECT {fields} FROM {table} {conditions}")
-        return self.__cursor.fetchall()
+    def select_data(self, collection="", conditions=None):
+        if conditions is None:
+            conditions = {}
+        collection = self.__db[collection]
+        return collection.find(conditions)
 
-    def update_data(self, table="", field="", value="", conditions="WHERE 1"):
-        result = self.__cursor.execute(f"UPDATE {table} SET {field}='{value}' {conditions}")
-        return result
+    def update_data(self, collection="", conditions=None, data=None):
+        if data is None:
+            data = dict()
+        if conditions is None:
+            conditions = {}
+
