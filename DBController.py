@@ -2,9 +2,9 @@ from pymongo import MongoClient
 
 
 class DBController:
-    def __init__(self, host="localhost", port="27017", db_name="pooptbank", db_user="root", db_pass=""):
+    def __init__(self, host="localhost", port=27017, db_name="pooptbank", db_user="root", db_pass=""):
         try:
-            self.__client = MongoClient(host, port)
+            self.__client = MongoClient(host)
             self.__db = self.__client[db_name]
         except:
             print("Conexão com o banco falhou")

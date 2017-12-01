@@ -21,6 +21,6 @@ class Signup(SubWindow):
             new_user = self.__app.getEntry("New Username")
             new_password = self.__app.getEntry("New Password")
             db_controller = DBController("localhost", "pooptbank", "postgres", "cgch36AA!@")
-            print(db_controller.insert_data())
+            print(db_controller.insert_data('users',{'username':new_user, 'password':new_password}))
         elif btn == "Cancelar Cadastro":
             self.destroy_window()
