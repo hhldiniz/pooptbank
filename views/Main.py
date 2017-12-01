@@ -1,5 +1,6 @@
 from DBController import DBController
 from views.Config import Configuration
+from views.Home import HomeView
 from views.Signup import Signup
 from views.View import View
 
@@ -11,15 +12,15 @@ class Main(View):
 
     def __btn_callback(self, btn):
         if btn == "Entrar":
-            db_controller = DBController("localhost", "pooptbank", "postgres", "cgch36AA!@")
+            db_controller = DBController("localhost", "pooptbank")
             username = self.get_app_gui().getEntry("Username")
             password = self.get_app_gui().getEntry("Password")
-            data = db_controller.select_data("user", "username,password",
-                                             f"WHERE username='{username}' AND password='{password}'")
-            print(data)
+            data = db_controller.select_data_single('users', {'username': username, 'password': password})
+            if data is not None and data['username'] == username and data['password'] == password:
+                HomeView(View.get_app_gui(self), "Home")
         elif btn == "Sair":
             View.get_app_gui(self).stop()
         elif btn == "Cadastrar":
-            signup_view = Signup(View.get_app_gui(self))
+            Signup(View.get_app_gui(self))
         elif btn == "Configurar":
-            config_view = Configuration(View.get_app_gui(self), btn)
+            Configuration(View.get_app_gui(self), btn)

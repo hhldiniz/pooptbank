@@ -24,3 +24,9 @@ class SubWindow:
 
     def set_size(self, size):
         self.__app.setGeometry(size)
+
+    def add_separator(self, orientation="horizontal", x_coordinate=1, y_coordinate=1, collumspan=1, color="black"):
+        if orientation == "horizontal":
+            self.__app.addHorizontalSeparator(x_coordinate, y_coordinate, collumspan,color)
+        else:
+            self.__app.addVerticalSeparator(x_coordinate, y_coordinate, color)
