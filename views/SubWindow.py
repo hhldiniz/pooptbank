@@ -10,8 +10,8 @@ class SubWindow:
     def add_btn(self, title):
         self.__app.addButton(title, self.__btn_callback)
 
-    def set_btn_callback(self, callback):
-        self.__btn_callback = callback
+    def add_btns(self, titles, callback=None):
+        self.__app.addButtons(titles, callback)
 
     def add_label_secret_field(self, title):
         self.__app.addSecretLabelEntry(title)
@@ -30,3 +30,6 @@ class SubWindow:
             self.__app.addHorizontalSeparator(x_coordinate, y_coordinate, collumspan,color)
         else:
             self.__app.addVerticalSeparator(x_coordinate, y_coordinate, color)
+
+    def get_app_gui(self):
+        return self.__app
