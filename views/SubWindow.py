@@ -18,6 +18,9 @@ class SubWindow:
     def add_btns(self, titles, callback=None):
         self.__app.addButtons(titles, callback)
 
+    def add_entry(self, label):
+        self.__app.addLabelEntry(label)
+
     def add_label_secret_field(self, title):
         self.__app.addSecretLabelEntry(title)
 

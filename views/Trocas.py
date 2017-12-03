@@ -1,6 +1,5 @@
 from Prize import Prize
 from views.SubWindow import SubWindow
-from Transacao import Transacao
 
 
 class TrocasView(SubWindow):
