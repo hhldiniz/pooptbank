@@ -1,5 +1,8 @@
 from views.SubWindow import SubWindow
 from views.Historico import HistoricoView
+from views.Trocas import TrocasView
+# from views.Transferencia import TransferenciasView
+# from views.Deposito import DepositoView
 
 
 class HomeView(SubWindow):
@@ -11,6 +14,17 @@ class HomeView(SubWindow):
         SubWindow.add_label(self, "Seu saldo é 0")
         SubWindow.add_label(self, "Sua ultima transação foi ...")
 
+        self.historicoView = HistoricoView(SubWindow.get_app_gui(self), "Historico")
+        self.trocasView = TrocasView(SubWindow.get_app_gui(self), "Trocas")
+
     def __btn_callback(self, btn):
         if btn == "Historico":
-            HistoricoView(SubWindow.get_app_gui(self), "Historico")
+            self.historicoView.show("Historico")
+        if btn == "Trocas":
+            self.trocasView.show("Trocas")
+        if btn == "Transferencias":
+            HomeView(SubWindow.get_app_gui(self), "Transferencias")
+        if btn == "Deposito":
+            HomeView(SubWindow.get_app_gui(self), "Deposito")
+        if btn == "Logout":
+            SubWindow.get_app_gui(self).stop()

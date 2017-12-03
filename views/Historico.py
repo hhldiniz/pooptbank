@@ -20,9 +20,8 @@ class HistoricoView(SubWindow):
         for t in historico:
             SubWindow.add_label(self, t.get_data() + "\t" + t.get_descricao() + "\t" + str(t.get_valor()) + " poopts")
 
-
         SubWindow.add_btns(self, ["Sair do Historico"], self.__btn_callback)
 
     def __btn_callback(self, btn):
         if btn == "Sair do Historico":
-            SubWindow.destroy(self, "Historico")
+            SubWindow.hide(self, "Historico")

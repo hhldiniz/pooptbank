@@ -6,7 +6,7 @@ from views.View import View
 
 
 class Main(View):
-    def __init__(self, title="Poopt Bank", size="800x600"):
+    def __init__(self, title="Poopt Bank", size="500x400"):
         View.__init__(self, title, size)
         View.set_btn_callback(self, self.__btn_callback)
 
@@ -17,7 +17,8 @@ class Main(View):
             password = self.get_app_gui().getEntry("Password")
             data = db_controller.select_data_single('users', {'username': username, 'password': password})
             if data is not None and data['username'] == username and data['password'] == password:
-                HomeView(View.get_app_gui(self), "Home")
+                homeView = HomeView(View.get_app_gui(self), "Home")
+                homeView.show("Home")
         elif btn == "Sair":
             View.get_app_gui(self).stop()
         elif btn == "Cadastrar":

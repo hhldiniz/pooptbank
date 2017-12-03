@@ -4,8 +4,13 @@ class SubWindow:
         self.__app = app
         self.__title = title
         self.__app.startSubWindow(title, modal=True)
-        self.__app.showSubWindow(title)
         self.__btn_callback = None
+
+    def show(self, title):
+        self.__app.showSubWindow(title)
+
+    def hide(self, title):
+        self.__app.hideSubWindow(title)
 
     def add_btn(self, title):
         self.__app.addButton(title, self.__btn_callback)
@@ -33,6 +38,12 @@ class SubWindow:
 
     def add_option_box(self, title, values):
         self.__app.addOptionBox(title, values)
+
+    def get_option_box(self, title):
+        return self.__app.getOptionBox(title)
+
+    def add_check_box(self, id, text):
+        self.__app.addNamedCheckBox(text, id)
 
     def destroy(self, title):
         self.__app.destroySubWindow(title)
