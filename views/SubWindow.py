@@ -31,5 +31,11 @@ class SubWindow:
         else:
             self.__app.addVerticalSeparator(x_coordinate, y_coordinate, color)
 
+    def add_option_box(self, title, values):
+        self.__app.addOptionBox(title, values)
+
+    def destroy(self, title):
+        self.__app.destroySubWindow(title)
+
     def get_app_gui(self):
         return self.__app
