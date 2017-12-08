@@ -3,7 +3,7 @@ class SubWindow:
         self.__modal = self
         self.__app = app
         self.__title = title
-        self.__app.startSubWindow(title, modal=True)
+        self.__app.startSubWindow(title, modal=True, transient=True)
         self.__btn_callback = None
 
     def show(self, title):

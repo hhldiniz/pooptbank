@@ -16,11 +16,31 @@ class DBController:
         else:
             DBController.instance.val = "db_controller"
         try:
-            url_con = "mongodb://"+db_user+":"+db_pass+"@"+host+":"+str(port)+"/"+db_name+""
+            if host == "localhost" or "127.0.0.1":
+                url_con = "localhost"
+            else:
+                url_con = "mongodb://"+db_user+":"+db_pass+"@"+host+":"+str(port)+"/"+db_name+""
             self.__client = MongoClient(url_con)
             self.__db = self.__client[db_name]
+            self.__db_name = db_name
+            self.__db_pass = db_pass
+            self.__db_host = host
+            self.__db_user = db_user
+            self.__db_port = port
         except:
             print("Conexão com o banco falhou")
+
+    def set_db_name(self, db_name):
+        self.__db_name = db_name
+
+    def set_db_host(self, db_host):
+        self.__db_host = db_host
+
+    def set_db_pass(self, db_pass):
+        self.__db_pass = db_pass
+
+    def set_db_port(self, port):
+        self.__db_port = port
 
     def insert_data(self, collection="", data=None):
         if data is None:

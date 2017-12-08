@@ -4,9 +4,9 @@ from views.SubWindow import SubWindow
 
 class Signup(SubWindow):
     def __init__(self, app, title="Poopt Signup"):
+        SubWindow.__init__(self, app, title)
         self.__app = app
         self.__title = title
-        SubWindow.__init__(self, app, title)
         SubWindow.add_label_validation_field(self, "New Username")
         SubWindow.add_label_secret_field(self, "New Password")
         SubWindow.set_btn_callback(self, self.btn_callback)
@@ -21,6 +21,7 @@ class Signup(SubWindow):
             new_user = self.__app.getEntry("New Username")
             new_password = self.__app.getEntry("New Password")
             db_controller = DBController("localhost", "pooptbank")
-            db_controller.insert_data('users', {'username': new_user, 'password': new_password, 'admin': False})
+            db_controller.insert_data('users', {'username': new_user, 'password': new_password, 'admin': False,
+                                                'balance': 0})
         elif btn == "Cancelar Cadastro":
             self.destroy_window()
