@@ -21,6 +21,9 @@ class SubWindow:
     def add_entry(self, label):
         self.__app.addLabelEntry(label)
 
+    def get_entry(self, title):
+        return self.__app.getEntry(title)
+
     def add_label_secret_field(self, title):
         self.__app.addSecretLabelEntry(title)
 
@@ -29,6 +32,9 @@ class SubWindow:
 
     def add_label(self, label):
         self.__app.addLabel(label, label)
+
+    def add_spin_box(self, title):
+        self.__app.addSpinBox(title)
 
     def set_size(self, size):
         self.__app.setGeometry(size)

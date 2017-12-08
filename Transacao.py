@@ -1,7 +1,8 @@
 from DBController import DBController
 
+
 class Transacao:
-    def __init__(self, data, descricao, valor, user1, user2):
+    def __init__(self, data, descricao, valor, user1=None, user2=None):
         self.__data = data
         self.__descricao = descricao
         self.__valor = valor
