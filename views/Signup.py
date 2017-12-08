@@ -1,5 +1,6 @@
 from DAO.AddressDao import Address
 from DAO.StudentDao import Student
+from views.Error import ErrorView
 from views.SubWindow import SubWindow
 
 
@@ -13,7 +14,7 @@ class Signup(SubWindow):
         SubWindow.add_entry(self, "CPF")
         SubWindow.add_entry(self, "St.")
         SubWindow.add_entry(self, "Neighborhood")
-        SubWindow.add_spin_box(self, "Number")
+        SubWindow.add_spin_box_range(self, "Number", 1, 9999)
         SubWindow.add_entry(self, "City")
         SubWindow.add_option_box(self, "State", ["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA",
                                                   "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
@@ -38,8 +39,10 @@ class Signup(SubWindow):
             new_password = self.__app.getEntry("New Password")
             new_cpf = self.__app.getEntry("CPF")
             new_student = Student(address=new_address, username=new_user, cpf=new_cpf, password=new_password)
-            new_student.save()
-            # if inserted_data is not None:
-            #     SubWindow.hide(self, self.__title)
+            if new_student.save():
+                self.hide(self.__title)
+            else:
+                error_view = ErrorView(self.__app, "Signup Error")
+                error_view.show(self)
         elif btn == "Cancel Signup":
             self.hide(self.__title)

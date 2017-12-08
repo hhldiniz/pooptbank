@@ -9,9 +9,12 @@ class Student(BaseUser):
     def save(self):
         try:
             db_controller = DBController()
-            db_controller.insert_data('users',{'username': BaseUser.get_name(self), 'password': BaseUser.get_password(self),
+            query = db_controller.insert_data('users',{'username': BaseUser.get_name(self), 'password': BaseUser.get_password(self),
                                                'address': BaseUser.get_address(self), 'cpf': BaseUser.get_cpf(self),
                                                'admin': False,'balance': 0})
-            return True
+            if query is None:
+                return False
+            else:
+                return True
         except:
             return False

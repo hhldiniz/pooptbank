@@ -33,8 +33,8 @@ class SubWindow:
     def add_label(self, label):
         self.__app.addLabel(label, label)
 
-    def add_spin_box(self, title):
-        self.__app.addSpinBox(title)
+    def add_spin_box_range(self, title, initial, end):
+        self.__app.addSpinBoxRange(title, initial, end)
 
     def set_size(self, size):
         self.__app.setGeometry(size)
