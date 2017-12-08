@@ -21,8 +21,8 @@ class Main(View):
             password = self.get_app_gui().getEntry("Password")
             data = db_controller.select_data_single('users', {'username': username, 'password': password})
             if data is not None and data['username'] == username and data['password'] == password:
-                homeView = HomeView(View.get_app_gui(self), "Home")
-                homeView.show("Home")
+                home_view = HomeView(View.get_app_gui(self), "Home", data['username'], str(data['balance']))
+                home_view.show("Home")
             else:
                 error_view = ErrorView(View.get_app_gui(self), "Erro")
                 error_view.show("Erro")
