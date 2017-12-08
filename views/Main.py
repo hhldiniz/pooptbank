@@ -1,3 +1,5 @@
+from appJar.appjar import ItemLookupError
+
 from DBController import DBController
 from views.Config import Configuration
 from views.Error import ErrorView
@@ -10,6 +12,7 @@ class Main(View):
     def __init__(self, title="Poopt Bank", size="500x400"):
         View.__init__(self, title, size)
         View.set_btn_callback(self, self.__btn_callback)
+        db_controller = DBController("localhost", "pooptbank")
 
     def __btn_callback(self, btn):
         if btn == "Entrar":
@@ -29,8 +32,12 @@ class Main(View):
         elif btn == "Sair":
             View.get_app_gui(self).stop()
         elif btn == "Cadastrar":
-                signup_view = Signup(View.get_app_gui(self), btn)
-                signup_view.show(btn)
+                signup_view = None
+                try:
+                    signup_view = Signup(View.get_app_gui(self), btn)
+                    signup_view.show(btn)
+                except ItemLookupError:
+                    signup_view.show(btn)
         elif btn == "Configurar":
             config_view = Configuration(View.get_app_gui(self), btn)
             config_view.show(btn)

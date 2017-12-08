@@ -1,11 +1,10 @@
 class Address:
-    def __init__(self, street, neighborhood, number, city, state, country):
+    def __init__(self, street, neighborhood, number, city, state):
         self.__street = street
         self.__neighborhood = neighborhood
         self.__number = number
         self.__city = city
         self.__state = state
-        self.__country = country
 
     def get_street(self):
         return self.__street
@@ -36,6 +35,3 @@ class Address:
 
     def set_state(self, state):
         self.__state = state
-
-    def get_country(self):
-        return self.__country
