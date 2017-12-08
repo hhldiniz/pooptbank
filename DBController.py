@@ -16,7 +16,8 @@ class DBController:
         else:
             DBController.instance.val = "db_controller"
         try:
-            self.__client = MongoClient(host)
+            url_con = "mongodb://"+db_user+":"+db_pass+"@"+host+":"+str(port)+"/"+db_name+""
+            self.__client = MongoClient(url_con)
             self.__db = self.__client[db_name]
         except:
             print("Conexão com o banco falhou")

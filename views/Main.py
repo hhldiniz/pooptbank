@@ -12,7 +12,8 @@ class Main(View):
 
     def __btn_callback(self, btn):
         if btn == "Entrar":
-            db_controller = DBController("localhost", "pooptbank")
+            db_controller = DBController(host="ds133856.mlab.com", port=33856, db_name="pooptbank", db_user="manager",
+                                         db_pass="pooptmaster")
             username = self.get_app_gui().getEntry("Username")
             password = self.get_app_gui().getEntry("Password")
             data = db_controller.select_data_single('users', {'username': username, 'password': password})
