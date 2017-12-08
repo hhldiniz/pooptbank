@@ -6,6 +6,9 @@ class Address:
         self.__city = city
         self.__state = state
 
+    def __str__(self):
+        return "St: "+self.__street+"Neighborhood: "+self.__neighborhood+"Number: "+self.__number
+
     def get_street(self):
         return self.__street
 

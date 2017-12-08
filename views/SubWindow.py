@@ -36,6 +36,9 @@ class SubWindow:
     def add_spin_box_range(self, title, initial, end):
         self.__app.addSpinBoxRange(title, initial, end)
 
+    def get_spin_box(self, title):
+        self.__app.getSpinBox(title)
+
     def set_size(self, size):
         self.__app.setGeometry(size)
 

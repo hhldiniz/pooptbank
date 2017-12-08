@@ -32,7 +32,7 @@ class Signup(SubWindow):
             new_neighborhood = SubWindow.get_entry(self, "Neighborhood")
             new_city = SubWindow.get_entry(self, "City")
             new_state = SubWindow.get_option_box(self, "State")
-            new_number = SubWindow.get_entry(self, "Number")
+            new_number = SubWindow.get_spin_box(self, "Number")
             new_address = Address(street=new_street, neighborhood=new_neighborhood, city=new_city,
                                   state=new_state, number=new_number)
             new_user = self.__app.getEntry("New Username")
