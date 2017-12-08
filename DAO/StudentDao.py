@@ -9,8 +9,9 @@ class Student(BaseUser):
     def save(self):
         try:
             db_controller = DBController()
+            address = BaseUser.get_address(self)
             query = db_controller.insert_data('users',{'username': BaseUser.get_name(self), 'password': BaseUser.get_password(self),
-                                               'address': BaseUser.get_address(self), 'cpf': BaseUser.get_cpf(self),
+                                               'address': address.get_street(), 'cpf': BaseUser.get_cpf(self),
                                                'admin': False,'balance': 0})
             if query is None:
                 return False
